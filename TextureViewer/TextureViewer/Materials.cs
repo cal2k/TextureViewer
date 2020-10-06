@@ -10,42 +10,27 @@ namespace TextureViewer
 {
     class Materials
     {
-         
-        string temp, TexturePath = "d:\\Documents\\Assits\\Textures\\cc0textures.com";
-        string[] dirs;
-        int i,ii;
-        private static List<string> listMats = new List<string>();
+        private List<string> listMats = new List<string>();
 
-        Form1 form = new Form1();
         public List<string> MaterialList
         {
             get { return listMats; }
         }
+
         //MATERIALS
         public void load()
         {
-            ii = TexturePath.Count();
+            string temp;
+            string[] dirs;
+            int textureCount = Forms.TexturePath.Count();
+
             dirs = Directory.GetDirectories(TexturePath);
-            for (i = 0; i < dirs.Length; i++)
+            for (int i = 0; i < dirs.Length; i++, textureCount++)
             {
                 temp = dirs[i];
-                temp = temp.Remove(0, ii + 1);
+                temp = temp.Remove(0, textureCount);
                 listMats.Add(temp);
             }
-
-            populate();
         }
-
-        private void populate()
-        {
-            form.lbMaterials.Items.Clear();
-
-            ii = MaterialList.Count();
-            for (i = 0; i < ii; i++)
-            {
-                form.lbMaterials.Items.Add(MaterialList[i]);
-            }
-        }
-
     }
 }

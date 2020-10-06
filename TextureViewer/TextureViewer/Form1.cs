@@ -14,11 +14,13 @@ namespace TextureViewer
     public partial class Form1 : Form
     {
         Materials Mats = new Materials();
-
-        string TexturePath = "d:\\Documents\\Assits\\Textures\\cc0textures.com", CurrentPath, CurrentMaterial, CurrentTexture, FileName, imagePath, temp, filterword;
+        public static string TexturePath = "d:\\Documents\\Assits\\Textures\\cc0textures.com"
+        
+        string CurrentPath, CurrentMaterial, CurrentTexture, FileName, imagePath, temp, filterword;
         String[] dirs, tempArray;
         List<string> Textures = new List<string>();
         int i, ii, count;
+
         public Form1()
         {
             InitializeComponent();
@@ -27,10 +29,8 @@ namespace TextureViewer
 
             btnOpenImage.Enabled = false;
             btnTextureLocation.Enabled = false;
-
-            Mats.load();
             
-            //populateMaterials();
+            populateMaterials();
         }
         
         private void btnSelectLibarary_Click(object sender, EventArgs e)
@@ -56,10 +56,9 @@ namespace TextureViewer
         {
             lbMaterials.Items.Clear();
 
-            count = Mats.MaterialList.Count();
-            for (i = 0; i < count; i++)
+            foreach (string material in Mats.MaterialList)
             {
-                lbMaterials.Items.Add(Mats.MaterialList[i]);
+                lbMaterials.Items.Add(material);
             }
         }
 

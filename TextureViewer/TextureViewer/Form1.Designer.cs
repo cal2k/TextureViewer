@@ -33,11 +33,11 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btnSelectLibarary = new System.Windows.Forms.Button();
             this.lblCurrentDir = new System.Windows.Forms.Label();
-            this.btnCC0 = new System.Windows.Forms.Button();
             this.btnOpenImage = new System.Windows.Forms.Button();
             this.btnTextureLocation = new System.Windows.Forms.Button();
             this.btnCopyTexturePath = new System.Windows.Forms.Button();
             this.tbFilter = new System.Windows.Forms.TextBox();
+            this.btnDeleteTexture = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -82,25 +82,15 @@
             // 
             // lblCurrentDir
             // 
-            this.lblCurrentDir.Location = new System.Drawing.Point(125, 14);
+            this.lblCurrentDir.Location = new System.Drawing.Point(125, 9);
             this.lblCurrentDir.Name = "lblCurrentDir";
-            this.lblCurrentDir.Size = new System.Drawing.Size(582, 21);
+            this.lblCurrentDir.Size = new System.Drawing.Size(779, 21);
             this.lblCurrentDir.TabIndex = 4;
-            // 
-            // btnCC0
-            // 
-            this.btnCC0.Location = new System.Drawing.Point(829, 9);
-            this.btnCC0.Name = "btnCC0";
-            this.btnCC0.Size = new System.Drawing.Size(75, 23);
-            this.btnCC0.TabIndex = 5;
-            this.btnCC0.Text = "cc0Textures";
-            this.btnCC0.UseVisualStyleBackColor = true;
-            this.btnCC0.Click += new System.EventHandler(this.btnCC0_Click);
             // 
             // btnOpenImage
             // 
             this.btnOpenImage.Enabled = false;
-            this.btnOpenImage.Location = new System.Drawing.Point(775, 646);
+            this.btnOpenImage.Location = new System.Drawing.Point(439, 646);
             this.btnOpenImage.Name = "btnOpenImage";
             this.btnOpenImage.Size = new System.Drawing.Size(129, 23);
             this.btnOpenImage.TabIndex = 6;
@@ -120,7 +110,7 @@
             // 
             // btnCopyTexturePath
             // 
-            this.btnCopyTexturePath.Location = new System.Drawing.Point(535, 646);
+            this.btnCopyTexturePath.Location = new System.Drawing.Point(574, 646);
             this.btnCopyTexturePath.Name = "btnCopyTexturePath";
             this.btnCopyTexturePath.Size = new System.Drawing.Size(129, 23);
             this.btnCopyTexturePath.TabIndex = 8;
@@ -136,16 +126,26 @@
             this.tbFilter.TabIndex = 9;
             this.tbFilter.TextChanged += new System.EventHandler(this.tbFilter_TextChanged);
             // 
+            // btnDeleteTexture
+            // 
+            this.btnDeleteTexture.Location = new System.Drawing.Point(775, 646);
+            this.btnDeleteTexture.Name = "btnDeleteTexture";
+            this.btnDeleteTexture.Size = new System.Drawing.Size(129, 23);
+            this.btnDeleteTexture.TabIndex = 10;
+            this.btnDeleteTexture.Text = "Delete Texture";
+            this.btnDeleteTexture.UseVisualStyleBackColor = true;
+            this.btnDeleteTexture.Click += new System.EventHandler(this.btnDeleteTexture_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(916, 681);
+            this.Controls.Add(this.btnDeleteTexture);
             this.Controls.Add(this.tbFilter);
             this.Controls.Add(this.btnCopyTexturePath);
             this.Controls.Add(this.btnTextureLocation);
             this.Controls.Add(this.btnOpenImage);
-            this.Controls.Add(this.btnCC0);
             this.Controls.Add(this.lblCurrentDir);
             this.Controls.Add(this.btnSelectLibarary);
             this.Controls.Add(this.pictureBox1);
@@ -160,17 +160,16 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.ListBox lbMaterials;
-        private System.Windows.Forms.ListBox lbOptions;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button btnSelectLibarary;
         private System.Windows.Forms.Label lblCurrentDir;
-        private System.Windows.Forms.Button btnCC0;
-        private System.Windows.Forms.Button btnOpenImage;
-        private System.Windows.Forms.Button btnTextureLocation;
-        private System.Windows.Forms.Button btnCopyTexturePath;
         private System.Windows.Forms.TextBox tbFilter;
+        public System.Windows.Forms.Button btnOpenImage;
+        public System.Windows.Forms.Button btnTextureLocation;
+        public System.Windows.Forms.Button btnCopyTexturePath;
+        public System.Windows.Forms.Button btnDeleteTexture;
+        public System.Windows.Forms.ListBox lbMaterials;
+        public System.Windows.Forms.ListBox lbOptions;
     }
 }
 

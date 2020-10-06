@@ -13,13 +13,24 @@ namespace TextureViewer
 {
     public partial class Form1 : Form
     {
-        string TexturePath, CurrentPath, CurrentMaterial, CurrentTexture, FileName, imagePath, temp, filterword;
+        Materials Mats = new Materials();
+
+        string TexturePath = "d:\\Documents\\Assits\\Textures\\cc0textures.com", CurrentPath, CurrentMaterial, CurrentTexture, FileName, imagePath, temp, filterword;
         String[] dirs, tempArray;
-        List<string> Materials = new List<string>(), Textures = new List<string>();
+        List<string> Textures = new List<string>();
         int i, ii, count;
         public Form1()
         {
             InitializeComponent();
+            ii = TexturePath.Count();
+            lblCurrentDir.Text = TexturePath;
+
+            btnOpenImage.Enabled = false;
+            btnTextureLocation.Enabled = false;
+
+            Mats.load();
+            
+            //populateMaterials();
         }
         
         private void btnSelectLibarary_Click(object sender, EventArgs e)
@@ -36,47 +47,22 @@ namespace TextureViewer
                     lblCurrentDir.Text = TexturePath;
                     ii = TexturePath.Count();
 
-                    loadMaterials();
+                    Mats.load();
                 }
             }
         }
-        
-        private void btnCC0_Click(object sender, EventArgs e)
-        {
-            lbMaterials.Items.Clear();
 
-            TexturePath = "d:\\Documents\\Assits\\Textures\\cc0textures.com";
-            lblCurrentDir.Text = TexturePath;
-            ii = TexturePath.Count();
-
-            loadMaterials();
-        }
-        
-
-        //MATERIALS
-        private void loadMaterials()
-        {
-            btnOpenImage.Enabled = false;
-            btnTextureLocation.Enabled = false;
-
-            dirs = Directory.GetDirectories(TexturePath);
-            for (i = 0; i < dirs.Length; i++)
-            {
-                temp = dirs[i];
-                temp = temp.Remove(0, ii + 1);
-                Materials.Add(temp);
-            }
-            populateMaterials();
-        }
         private void populateMaterials()
         {
-            count = Materials.Count();
             lbMaterials.Items.Clear();
-            for(i = 0; i < count; i++)
+
+            count = Mats.MaterialList.Count();
+            for (i = 0; i < count; i++)
             {
-                lbMaterials.Items.Add(Materials[i]);
+                lbMaterials.Items.Add(Mats.MaterialList[i]);
             }
         }
+
         private void lbMaterials_SelectedIndexChanged(object sender, EventArgs e)
         {
             Textures.Clear();
@@ -84,7 +70,7 @@ namespace TextureViewer
             CurrentPath = TexturePath + "\\" + CurrentMaterial;
             pictureBox1.Image = null;
             loadTextures();
-            
+
         }
         //Filtering Materials
         private void tbFilter_TextChanged(object sender, EventArgs e)
@@ -92,13 +78,13 @@ namespace TextureViewer
             filterword = tbFilter.Text;
             count = filterword.Length;
 
-            if(count > 1)
+            if (count > 1)
             {
                 filterword = char.ToUpper(filterword[0]) + filterword.Substring(1);
             }
-            
 
-            count = Materials.IndexOf(filterword);
+
+            count = Mats.MaterialList.IndexOf(filterword);
             switch (count)
             {
                 case -1:
@@ -108,16 +94,18 @@ namespace TextureViewer
                     break;
                 default:
                     lbMaterials.Items.Clear();
-                    lbMaterials.Items.Add(Materials[count]);
+                    lbMaterials.Items.Add(Mats.MaterialList[count]);
 
                     Textures.Clear();
-                    CurrentMaterial = Materials[count];
+                    CurrentMaterial = Mats.MaterialList[count];
                     CurrentPath = TexturePath + "\\" + CurrentMaterial;
                     pictureBox1.Image = null;
                     loadTextures();
                     break;
             }
         }
+
+
 
         //TEXTURES
         private void loadTextures()
@@ -191,5 +179,12 @@ namespace TextureViewer
         {
             System.Windows.Forms.Clipboard.SetText(CurrentPath + "\\" + CurrentTexture);
         }
+
+        //DELETE
+        private void btnDeleteTexture_Click(object sender, EventArgs e)
+        {
+
+        }
+
     }
 }

@@ -102,6 +102,7 @@ namespace TextureViewer
             switch (count)
             {
                 case -1:
+                    pictureBox1.Image = null;
                     lbOptions.Items.Clear();
                     populateMaterials();
                     break;
@@ -173,8 +174,8 @@ namespace TextureViewer
                 }
                 catch (Exception exx)
                 {
-                    MessageBox.Show(ex.ToString());
-                    MessageBox.Show(exx.ToString());
+                    pictureBox1.Image = pictureBox1.ErrorImage;
+                    btnTextureLocation.Enabled = true;
                 }
             }
         }

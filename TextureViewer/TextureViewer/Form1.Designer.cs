@@ -132,7 +132,7 @@
             // 
             this.tbFilter.Location = new System.Drawing.Point(15, 649);
             this.tbFilter.Name = "tbFilter";
-            this.tbFilter.Size = new System.Drawing.Size(107, 20);
+            this.tbFilter.Size = new System.Drawing.Size(283, 20);
             this.tbFilter.TabIndex = 9;
             this.tbFilter.TextChanged += new System.EventHandler(this.tbFilter_TextChanged);
             // 

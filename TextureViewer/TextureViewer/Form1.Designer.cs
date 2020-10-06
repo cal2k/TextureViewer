@@ -37,6 +37,7 @@
             this.btnOpenImage = new System.Windows.Forms.Button();
             this.btnTextureLocation = new System.Windows.Forms.Button();
             this.btnCopyTexturePath = new System.Windows.Forms.Button();
+            this.tbFilter = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -45,7 +46,7 @@
             this.lbMaterials.FormattingEnabled = true;
             this.lbMaterials.Location = new System.Drawing.Point(15, 38);
             this.lbMaterials.Name = "lbMaterials";
-            this.lbMaterials.Size = new System.Drawing.Size(107, 433);
+            this.lbMaterials.Size = new System.Drawing.Size(107, 602);
             this.lbMaterials.TabIndex = 0;
             this.lbMaterials.SelectedIndexChanged += new System.EventHandler(this.lbMaterials_SelectedIndexChanged);
             // 
@@ -55,7 +56,7 @@
             this.lbOptions.HorizontalScrollbar = true;
             this.lbOptions.Location = new System.Drawing.Point(128, 38);
             this.lbOptions.Name = "lbOptions";
-            this.lbOptions.Size = new System.Drawing.Size(170, 433);
+            this.lbOptions.Size = new System.Drawing.Size(170, 602);
             this.lbOptions.TabIndex = 1;
             this.lbOptions.SelectedIndexChanged += new System.EventHandler(this.lbOptions_SelectedIndexChanged);
             // 
@@ -64,7 +65,7 @@
             this.pictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.pictureBox1.Location = new System.Drawing.Point(304, 38);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(484, 404);
+            this.pictureBox1.Size = new System.Drawing.Size(600, 602);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 2;
             this.pictureBox1.TabStop = false;
@@ -88,7 +89,7 @@
             // 
             // btnCC0
             // 
-            this.btnCC0.Location = new System.Drawing.Point(713, 9);
+            this.btnCC0.Location = new System.Drawing.Point(829, 9);
             this.btnCC0.Name = "btnCC0";
             this.btnCC0.Size = new System.Drawing.Size(75, 23);
             this.btnCC0.TabIndex = 5;
@@ -99,7 +100,7 @@
             // btnOpenImage
             // 
             this.btnOpenImage.Enabled = false;
-            this.btnOpenImage.Location = new System.Drawing.Point(659, 448);
+            this.btnOpenImage.Location = new System.Drawing.Point(775, 646);
             this.btnOpenImage.Name = "btnOpenImage";
             this.btnOpenImage.Size = new System.Drawing.Size(129, 23);
             this.btnOpenImage.TabIndex = 6;
@@ -109,7 +110,7 @@
             // 
             // btnTextureLocation
             // 
-            this.btnTextureLocation.Location = new System.Drawing.Point(304, 448);
+            this.btnTextureLocation.Location = new System.Drawing.Point(304, 646);
             this.btnTextureLocation.Name = "btnTextureLocation";
             this.btnTextureLocation.Size = new System.Drawing.Size(129, 23);
             this.btnTextureLocation.TabIndex = 7;
@@ -119,7 +120,7 @@
             // 
             // btnCopyTexturePath
             // 
-            this.btnCopyTexturePath.Location = new System.Drawing.Point(439, 448);
+            this.btnCopyTexturePath.Location = new System.Drawing.Point(535, 646);
             this.btnCopyTexturePath.Name = "btnCopyTexturePath";
             this.btnCopyTexturePath.Size = new System.Drawing.Size(129, 23);
             this.btnCopyTexturePath.TabIndex = 8;
@@ -127,11 +128,20 @@
             this.btnCopyTexturePath.UseVisualStyleBackColor = true;
             this.btnCopyTexturePath.Click += new System.EventHandler(this.btnCopyTexturePath_Click);
             // 
+            // tbFilter
+            // 
+            this.tbFilter.Location = new System.Drawing.Point(15, 649);
+            this.tbFilter.Name = "tbFilter";
+            this.tbFilter.Size = new System.Drawing.Size(107, 20);
+            this.tbFilter.TabIndex = 9;
+            this.tbFilter.TextChanged += new System.EventHandler(this.tbFilter_TextChanged);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 483);
+            this.ClientSize = new System.Drawing.Size(916, 681);
+            this.Controls.Add(this.tbFilter);
             this.Controls.Add(this.btnCopyTexturePath);
             this.Controls.Add(this.btnTextureLocation);
             this.Controls.Add(this.btnOpenImage);
@@ -145,6 +155,7 @@
             this.Text = "Texture Preview";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -159,6 +170,7 @@
         private System.Windows.Forms.Button btnOpenImage;
         private System.Windows.Forms.Button btnTextureLocation;
         private System.Windows.Forms.Button btnCopyTexturePath;
+        private System.Windows.Forms.TextBox tbFilter;
     }
 }
 

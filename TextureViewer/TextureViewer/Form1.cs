@@ -13,16 +13,15 @@ namespace TextureViewer
 {
     public partial class Form1 : Form
     {
-        string TexturePath, CurrentPath, CurrentMaterial, CurrentTexture, FileName, imagePath, temp;
+        string TexturePath, CurrentPath, CurrentMaterial, CurrentTexture, FileName, imagePath, temp, filterword;
         String[] dirs, tempArray;
-        int i, ii;
+        List<string> Materials = new List<string>(), Textures = new List<string>();
+        int i, ii, count;
         public Form1()
         {
             InitializeComponent();
         }
-
         
-
         private void btnSelectLibarary_Click(object sender, EventArgs e)
         {
             lbMaterials.Items.Clear();
@@ -52,7 +51,9 @@ namespace TextureViewer
 
             loadMaterials();
         }
+        
 
+        //MATERIALS
         private void loadMaterials()
         {
             btnOpenImage.Enabled = false;
@@ -63,19 +64,62 @@ namespace TextureViewer
             {
                 temp = dirs[i];
                 temp = temp.Remove(0, ii + 1);
-                lbMaterials.Items.Add(temp);
+                Materials.Add(temp);
+            }
+            populateMaterials();
+        }
+        private void populateMaterials()
+        {
+            count = Materials.Count();
+            lbMaterials.Items.Clear();
+            for(i = 0; i < count; i++)
+            {
+                lbMaterials.Items.Add(Materials[i]);
             }
         }
         private void lbMaterials_SelectedIndexChanged(object sender, EventArgs e)
         {
+            Textures.Clear();
             CurrentMaterial = lbMaterials.SelectedItem.ToString();
             CurrentPath = TexturePath + "\\" + CurrentMaterial;
             pictureBox1.Image = null;
-            loadOptions();
+            loadTextures();
             
         }
+        //Filtering Materials
+        private void tbFilter_TextChanged(object sender, EventArgs e)
+        {
+            filterword = tbFilter.Text;
+            count = filterword.Length;
 
-        private void loadOptions()
+            if(count > 1)
+            {
+                filterword = char.ToUpper(filterword[0]) + filterword.Substring(1);
+            }
+            
+
+            count = Materials.IndexOf(filterword);
+            switch (count)
+            {
+                case -1:
+                    lbOptions.Items.Clear();
+                    populateMaterials();
+                    break;
+                default:
+                    lbMaterials.Items.Clear();
+                    lbMaterials.Items.Add(Materials[count]);
+
+                    Textures.Clear();
+                    CurrentMaterial = Materials[count];
+                    CurrentPath = TexturePath + "\\" + CurrentMaterial;
+                    pictureBox1.Image = null;
+                    loadTextures();
+                    break;
+            }
+        }
+
+        //TEXTURES
+        private void loadTextures()
         {
             dirs = System.IO.Directory.GetDirectories(CurrentPath);
 
@@ -88,7 +132,16 @@ namespace TextureViewer
                 temp = dirs[i];
                 temp = temp.Remove(0, ii + 1);
                 tempArray = temp.Split('\\');
-                lbOptions.Items.Add(tempArray[1]);
+                Textures.Add(tempArray[1]);
+            }
+            populateTextures();
+        }
+        private void populateTextures()
+        {
+            count = Textures.Count();
+            for(i = 0; i < count; i++)
+            {
+                lbOptions.Items.Add(Textures[i]);
             }
         }
         private void lbOptions_SelectedIndexChanged(object sender, EventArgs e)
@@ -99,6 +152,7 @@ namespace TextureViewer
             loadImage();
         }
 
+        //IMAGES
         private void loadImage()
         {
             try
@@ -124,7 +178,6 @@ namespace TextureViewer
                 }
             }
         }
-
         private void btnOpenImage_Click(object sender, EventArgs e)
         {
             System.Diagnostics.Process.Start(imagePath);
